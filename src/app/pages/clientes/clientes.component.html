@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col">
+    <h1>Listado de Clientes</h1>
+    <hr>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col text-right">
+    <button routerLink="/cliente/nuevo"
+            class="btn btn-primary">
+      <i class="fa fa-plus"></i>
+      Agregar cliente
+    </button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <table *ngIf="!cargando && clients.length > 0"
+          class="table mt-3 animated fadeIn faster animated fadeIn faster">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Fecha de nacimiento</th>
+          <th scope="col">Tools</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ client.name }}</td>
+          <td>{{ client.lastName }}</td>
+          <td>{{ client.age }}</td>
+          <td>{{ client.dateOfBirth }}</td>
+          <td>
+
+            <button class="btn btn-info mr-1"
+                    [routerLink]="['/cliente', client.id ]">
+              <i class="fa fa-pen"></i>
+            </button>
+
+            <button class="btn btn-danger"
+                    (click)="removeClient( client, i ) ">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row" *ngIf="!cargando && clients.length === 0">
+  <div class="col">
+    <div
+        class="alert alert-warning text-center mt-3 animated fadeIn faster">
+        <h4 class="alert-heading">No hay registros</h4>
+        <p>
+          <i class="fa fa-exclamation fa-2x"></i>
+        </p>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row" *ngIf="cargando">
+  <div class="col">
+    <div class="alert alert-info text-center mt-3 animated fadeIn faster">
+      <h4 class="alert-heading">Cargando</h4>
+      <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+      </p>
+      <p class="mb-0">
+        Espere por favor
+      </p>
+    </div>
+  </div>
+</div>
+
