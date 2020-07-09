@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
-import { ClientesComponent } from './pages/clientes/clientes.component';
-import { ClienteComponent } from './pages/cliente/cliente.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  { path: 'clientes', component: ClientesComponent },
-  { path: 'cliente/:id', component: ClienteComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'clientes' }
+  { path: '', component: HomeComponent },
+  {
+    path:'',
+    loadChildren: ()=> import('./pages/cliente.module').then(m=>m.ClienteModule),
+  },
+  { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 
 

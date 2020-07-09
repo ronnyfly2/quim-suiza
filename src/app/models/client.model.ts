@@ -2,11 +2,11 @@
 
 export class ClientModel {
 
-  id: string;
-  name: string;
-  lastName: string;
-  age:number;
-  dateOfBirth: string
+  public id: string;
+  public name: string;
+  public lastName: string;
+  public age:number;
+  public dateOfBirth: string
   constructor() {
       this.age = 0;
   }
