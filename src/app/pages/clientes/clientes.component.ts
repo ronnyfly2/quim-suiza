@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/stores/app.reducers';
+
 import { ClientsService } from '../../services/clients.service';
+import { loadClients } from '../../stores/actions/clientes.actions';
 import { ClientModel } from '../../models/client.model';
+
 import Swal from 'sweetalert2';
 
 
@@ -11,17 +16,20 @@ import Swal from 'sweetalert2';
 })
 export class ClientesComponent implements OnInit {
   clients: ClientModel[] = [];
-  cargando = false;
+  loading: boolean = false;
+  error: any;
   swalCont: object;
-  constructor(private clientsService: ClientsService) { }
+  constructor(private store: Store<AppState>,private clientsService: ClientsService) { }
 
   ngOnInit(): void {
-    this.cargando = true;
-    this.clientsService.getClients()
-    .subscribe( resp => {
-      this.clients = resp;
-      this.cargando = false;
+    this.store.select('clients').subscribe( ({ clients, loading, error }) => {
+      this.clients = clients;
+      this.loading = loading;
+      this.error = error;
     });
+
+
+    this.store.dispatch( loadClients() );
   }
   removeClient( client: ClientModel, i: number ) {
     this.swalCont = {

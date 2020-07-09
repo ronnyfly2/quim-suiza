@@ -23,7 +23,7 @@
 
 <div class="row">
   <div class="col">
-    <table *ngIf="!cargando && clients.length > 0"
+    <table *ngIf="!loading && clients.length > 0"
           class="table mt-3 animated fadeIn faster animated fadeIn faster">
       <thead class="thead-dark">
         <tr>
@@ -59,7 +59,7 @@
     </table>
   </div>
 </div>
-<div class="row" *ngIf="!cargando && clients.length === 0">
+<div class="row" *ngIf="!loading && clients.length === 0">
   <div class="col">
     <div
         class="alert alert-warning text-center mt-3 animated fadeIn faster">
@@ -73,7 +73,7 @@
 
 
 
-<div class="row" *ngIf="cargando">
+<div class="row" *ngIf="loading">
   <div class="col">
     <div class="alert alert-info text-center mt-3 animated fadeIn faster">
       <h4 class="alert-heading">Cargando</h4>

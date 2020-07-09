@@ -1,0 +1,10 @@
+Diferencia entre let y var
+let, es una variable de bloque
+var, es una variable global o local en una función sin importar el ámbito del bloque.
+
+Para que sirve una interface en TypeScript
+Interface sirve para tipar los datos.
+
+Diferencias entre forEach y map ?
+foreach te recorre un array de objetos, o solo array. el map() te crea un nuevo array.
+
